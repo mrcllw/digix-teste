@@ -15,8 +15,10 @@ export class CalcularPontuacaoDaFamiliaPorRendaTotal implements CalcularPontuaca
   calcular (familia: Familia): number {
     let pontuacao = 0
     const rendaDaFamilia = familia.obterRendaDaFamilia()
+    const familiaEstaNoValorMinimoDeRenda = rendaDaFamilia >= this.rendaMinima
+    const familiaEstaNoValorMaximoDeRenda = rendaDaFamilia <= this.rendaMaxima
 
-    if (rendaDaFamilia >= this.rendaMinima && rendaDaFamilia <= this.rendaMaxima) {
+    if (familiaEstaNoValorMinimoDeRenda && familiaEstaNoValorMaximoDeRenda) {
       pontuacao = this.pontos
     }
 

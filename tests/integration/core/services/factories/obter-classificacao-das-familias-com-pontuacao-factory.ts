@@ -7,20 +7,20 @@ import { ObterFamiliasPorStatusMock } from "../mocks/obter-familias-por-status-m
 
 export function obterClassificacaoDasFamiliasComPontuacaoFactory() {
   const calcularPontuacaoDaFamiliaPorIdadeDoPretendente = new CalcularPontuacaoDaFamiliaPorIdadeDoPretendente(5, 1, 2)
-    const calcularPontuacaoDaFamiliaPorQuantidadeDeDependente = new CalcularPontuacaoDaFamiliaPorQuantidadeDeDependente(3, 1, 2)
-    const calcularPontuacaoDaFamiliaPorRendaTotal = new CalcularPontuacaoDaFamiliaPorRendaTotal(2, 100, 1000)
+  const calcularPontuacaoDaFamiliaPorQuantidadeDeDependente = new CalcularPontuacaoDaFamiliaPorQuantidadeDeDependente(3, 1, 2)
+  const calcularPontuacaoDaFamiliaPorRendaTotal = new CalcularPontuacaoDaFamiliaPorRendaTotal(2, 100, 1000)
 
-    const obterFamiliasPorStatusMock = new ObterFamiliasPorStatusMock()
-    const calcularPontuacaoDaFamiliaComposite = new CalcularPontuacaoDaFamiliaComposite([
-      calcularPontuacaoDaFamiliaPorIdadeDoPretendente,
-      calcularPontuacaoDaFamiliaPorQuantidadeDeDependente,
-      calcularPontuacaoDaFamiliaPorRendaTotal
-    ])
+  const obterFamiliasPorStatusMock = new ObterFamiliasPorStatusMock()
+  const calcularPontuacaoDaFamiliaComposite = new CalcularPontuacaoDaFamiliaComposite([
+    calcularPontuacaoDaFamiliaPorIdadeDoPretendente,
+    calcularPontuacaoDaFamiliaPorQuantidadeDeDependente,
+    calcularPontuacaoDaFamiliaPorRendaTotal
+  ])
 
-    const obterClassificacaoDasFamiliasComPontuacao = new ObterClassificacaoDasFamiliasComPontuacao(
-      obterFamiliasPorStatusMock,
-      calcularPontuacaoDaFamiliaComposite
-    )
+  const obterClassificacaoDasFamiliasComPontuacao = new ObterClassificacaoDasFamiliasComPontuacao(
+    obterFamiliasPorStatusMock,
+    calcularPontuacaoDaFamiliaComposite
+  )
 
-    return obterClassificacaoDasFamiliasComPontuacao
+  return obterClassificacaoDasFamiliasComPontuacao
 }

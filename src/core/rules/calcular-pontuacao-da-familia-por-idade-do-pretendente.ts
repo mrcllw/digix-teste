@@ -16,8 +16,14 @@ export class CalcularPontuacaoDaFamiliaPorIdadeDoPretendente implements Calcular
     let pontuacao = 0
     const pretendente = familia.obterPretendente()
 
-    if (pretendente && pretendente.obterIdade() >= this.idadeMinima && (this.idadeMaxima ? pretendente.obterIdade() <= this.idadeMaxima : true)) {
-      pontuacao = this.pontos
+    if (pretendente) {
+      const idadeDoPretendente = pretendente.obterIdade()
+      const pretendenteEstaEntreIdadeMinima = idadeDoPretendente >= this.idadeMinima
+      const pretendenteEstaEntreIdadeMaxima = this.idadeMaxima ? idadeDoPretendente <= this.idadeMaxima : true
+
+      if (pretendenteEstaEntreIdadeMinima && pretendenteEstaEntreIdadeMaxima) {
+        pontuacao = this.pontos
+      }
     }
 
     return pontuacao

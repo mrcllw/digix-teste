@@ -18,6 +18,7 @@ describe('CalcularPontuacaoDaFamiliaComposite', () => {
 
     const resultadoEsperado = resultadoPrimeiroCalculo + resultadoSegundoCalculo
     expect(pontuacao).toBe(resultadoEsperado)
+    expect(calcularPontuacaoDaFamiliaSpy).toHaveBeenCalledTimes(2)
   })
 
   test('Deve retornar 0 se não possuir calculo injetado', () => {

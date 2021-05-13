@@ -6,8 +6,9 @@ describe.only('ObterClassificacaoDasFamiliasComPontuacao', () => {
 
     const listaDeFamilias = await obterClassificacaoDasFamiliasComPontuacao.obter()
 
-    expect(
-      listaDeFamilias.every((familia, index) => (index === 0 || familia.pontuacao <= listaDeFamilias[index - 1].pontuacao))
-    ).toBe(true)
+    const listaEstaOrdenadaPorPontuacao = listaDeFamilias.every((familia, index) => {
+      return index === 0 || familia.pontuacao <= listaDeFamilias[index - 1].pontuacao
+    })
+    expect(listaEstaOrdenadaPorPontuacao).toBe(true)
   })
 })

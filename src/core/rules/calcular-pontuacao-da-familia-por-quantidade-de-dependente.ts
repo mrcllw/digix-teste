@@ -15,8 +15,10 @@ export class CalcularPontuacaoDaFamiliaPorQuantidadeDeDependente implements Calc
   calcular (familia: Familia): number {
     let pontuacao = 0
     const quantidadeDeDependentes = familia.obterQuantidadeDeDependentes()
+    const familiaEstaNaQuantidadeMinimaDeDependentes = quantidadeDeDependentes >= this.quantidadeMinima
+    const fmailiaEstaNaQuantidadeMaximaDeDependentes = this.quantidadeMaxima ? quantidadeDeDependentes <= this.quantidadeMaxima : true
 
-    if (quantidadeDeDependentes >= this.quantidadeMinima && (this.quantidadeMaxima ? quantidadeDeDependentes <= this.quantidadeMaxima : true)) {
+    if (familiaEstaNaQuantidadeMinimaDeDependentes && fmailiaEstaNaQuantidadeMaximaDeDependentes) {
       pontuacao = this.pontos
     }
 

@@ -4,6 +4,7 @@ import { CalcularPontuacaoDaFamilia } from '@/core/rules/calcular-pontuacao-da-f
 import { TipoDeFamilia } from '../domain/enums/tipo-de-familia-enum'
 import { Familia } from '../domain/entities/familia-entity'
 import { FamiliaDto } from './dtos/familia-dto'
+import { FamiliaMapper } from './mappers/familia-mapper'
 
 export class ObterClassificacaoDasFamiliasComPontuacao implements ObterClassificacaoDasFamiliasComPontuacaoUseCase {
   constructor (
@@ -14,11 +15,11 @@ export class ObterClassificacaoDasFamiliasComPontuacao implements ObterClassific
   async obter (): Promise<FamiliaDto[]> {
     const familias = await this.obterFamiliasPorStatusRepository.obter(TipoDeFamilia.CADASTRO_VALIDO)
 
-    const formatarFamilia = (familia: Familia) => ({
-      pessoas: familia.pessoas,
-      status: familia.status,
-      pontuacao: this.calcularPontuacaoDaFamilia.calcular(familia)
-    })
+    const formatarFamilia = (familia: Familia) => {
+      const familiaDto = FamiliaMapper.toDto(familia)
+      familiaDto.pontuacao = this.calcularPontuacaoDaFamilia.calcular(familia)
+      return familiaDto
+    }
 
     const ordenarFamiliasPorPontuacao = (familiaA: FamiliaDto, familiaB: FamiliaDto) => {
       return familiaA.pontuacao > familiaB.pontuacao ? -1 : 1
